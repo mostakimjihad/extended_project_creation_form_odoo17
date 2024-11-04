@@ -1,0 +1,34 @@
+<odoo>
+    <record id="view_project_footer_inherit" model="ir.ui.view">
+        <field name="name">project.project_project_view_form_simplified_footer.inherit</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.project_project_view_form_simplified_footer"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='alias_name']" position="after">
+                <!-- Styled separator for Project Details -->
+                <div style="margin-top: 15px; margin-bottom: 15px;">
+                    <separator string="Project Details" colspan="4" nolabel="1"/>
+                </div>
+
+                <!-- Group layout with two columns to reduce white space -->
+                <group>
+                    <group>
+                        <field name="project_manager" string="Project Manager"/>
+                        <field name="date_start" string="Deadline" widget="daterange" options='{"end_date_field": "date", "always_range": "1"}' required="1"/>
+                        <field name="partner_id" string="Customer"/>
+                        <field name="company_id" string="Company"/>
+                    </group>
+                    <group>
+                        <field name="file_attachment" widget="many2many_binary" string="SRS/BRS"/>
+                        <field name="tag_ids" widget="many2many_tags" string="Tags"/>
+                    </group>
+                </group>
+
+                <!-- Full-width description field below with HTML editor -->
+                <group col="1">
+                    <field name="description" widget="html" placeholder="Enter project description here..." string="Project Description" style="width: 100%;"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
